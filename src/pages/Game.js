@@ -46,7 +46,7 @@ export default function Game() {
         list.push({
           value,
           status: CLOSED,
-          vanished,
+          vanished: false,
           id: list.length.toString(),
         });
       else continue;
@@ -56,16 +56,18 @@ export default function Game() {
   };
 
   const checkMatch = () => {
+    let matched = false;
     const couple = cards.filter(e => e.status === OPENED);
     if (couple[0].value === couple[1].value) {
       setMatches(matches + 1);
+      matched = true;
     }
     setTries(tries + 1);
     setTimeout(() => {
       let list = cards;
       list.forEach(e => {
         e.status = CLOSED;
-        if (couple.find(val => val.id === e.id)) e.vanished = true;
+        if (couple.find(val => val.id === e.id) && matched) e.vanished = true;
       });
       setCards([...list]);
       setOpenCards(0);
@@ -81,9 +83,6 @@ export default function Game() {
     card.status = OPENED;
     setCards([...list]);
     setOpenCards(openCards + 1);
-  };
-  const handleCardClosed = () => {
-    if (openCards > 0) setOpenCards(openCards - 1);
   };
 
   return (
@@ -103,7 +102,6 @@ export default function Game() {
             vanished={v.vanished}
             clickable={gameState}
             cardOpened={props => handleCardOpened(props)}
-            cardClosed={props => handleCardClosed(props)}
           />
         );
       })}

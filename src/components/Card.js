@@ -8,11 +8,10 @@ export default function Card({
   clickable,
   cardState: state,
   cardOpened,
-  cardClosed,
   vanished,
 }) {
   const handleCardPress = () => {
-    if (state === 0) cardClosed(id);
+    //if (state === 0) cardClosed(id);
     if (!state) cardOpened(id);
   };
 
@@ -34,7 +33,7 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'pink',
+    backgroundColor: '#EC407A',
     borderRadius: 10,
   },
   open: {
@@ -50,5 +49,6 @@ const styles = StyleSheet.create({
   },
   invisible: {
     opacity: 0,
+    backgroundColor: 'lightgrey',
   },
 });

@@ -1,7 +1,9 @@
 import React from 'react';
-import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Text, TouchableOpacity, BackHandler} from 'react-native';
+import { useHistory } from 'react-router-native';
 
-export default function Menu({history}) {
+export default function Menu() {
+  const history = useHistory();
   return (
     <View style={styles.root}>
       <Text style={styles.title}>Memory Game</Text>
@@ -13,7 +15,9 @@ export default function Menu({history}) {
       <TouchableOpacity style={styles.btn}>
         <Text style={styles.btnTitle}>Sound</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.btn}>
+      <TouchableOpacity
+        onPress={() => BackHandler.exitApp()}
+        style={styles.btn}>
         <Text style={styles.btnTitle}>Exit</Text>
       </TouchableOpacity>
     </View>

@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
     opacity: 1,
   },
   fold: {
-    transform: [{rotateY: '0deg'}],
-    opacity: 1,
+    transform: [{rotateY: '180deg'}],
+    opacity: 0,
   },
   title: {
     fontSize: 40,

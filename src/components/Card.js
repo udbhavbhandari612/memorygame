@@ -9,6 +9,7 @@ export default function Card({
   cardState: state,
   cardOpened,
   cardClosed,
+  vanished,
 }) {
   const handleCardPress = () => {
     if (state === 0) cardClosed(id);
@@ -17,9 +18,9 @@ export default function Card({
 
   return (
     <TouchableOpacity
-      disabled={!clickable}
+      disabled={!clickable || vanished}
       onPress={() => handleCardPress()}
-      style={{...styles.root, ...style}}>
+      style={{...styles.root, ...style, ...(vanished && styles.invisible)}}>
       <Text style={{...(state ? styles.open : styles.fold), ...styles.title}}>
         {title}
       </Text>
@@ -46,5 +47,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 40,
+  },
+  invisible: {
+    opacity: 0,
   },
 });
